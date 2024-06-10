@@ -1,0 +1,25 @@
+on:
+  push:
+    paths-ignore:
+      - '**/**.md'
+      - 'docs/**'
+env:
+  SEMANTIC_VERSION: 1.0.${{github.run_number}}
+
+concurrency: ci-${{ github.ref }}
+
+name: ci-sample-metrics-svc
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c Release -p:Version=${{ env.SEMANTIC_VERSION }}
