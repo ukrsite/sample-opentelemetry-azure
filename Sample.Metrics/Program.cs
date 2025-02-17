@@ -22,7 +22,7 @@ public class Program
         services.AddHostedService<Orders.ItemsOrdered>();
 
         // TODO Move this to configuration to a secret
-        var applicationInsightsConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+        var applicationInsightsConnectionString = "InstrumentationKey=468c58e9-327b-45c1-a995-96bbfe91e203;IngestionEndpoint=https://canadacentral-1.in.applicationinsights.azure.com/;LiveEndpoint=https://canadacentral.livediagnostics.monitor.azure.com/;ApplicationId=e25816df-2187-4605-883d-bd6f004e1aa8";
 
         services.AddOpenTelemetry().UseAzureMonitor(b =>
             {
